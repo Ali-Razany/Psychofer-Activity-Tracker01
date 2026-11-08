@@ -1,0 +1,6 @@
+{
+  "name": "PsychoSphere Activity Tracker",
+  "description": "A system for tracking and scoring activities of PsychoSphere members based on quality and quantity.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

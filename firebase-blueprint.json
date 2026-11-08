@@ -1,0 +1,50 @@
+{
+  "rules": [
+    {
+      "collection": "users",
+      "read": "request.auth != null",
+      "write": "request.auth != null && (request.auth.uid == resource.id || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin')",
+      "schema": {
+        "name": "string",
+        "role": "string",
+        "department": "string",
+        "points": "number",
+        "email": "string"
+      }
+    },
+    {
+      "collection": "departments",
+      "read": "request.auth != null",
+      "write": "request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'",
+      "schema": {
+        "name": "string"
+      }
+    },
+    {
+      "collection": "activities",
+      "read": "request.auth != null",
+      "write": "request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'",
+      "schema": {
+        "department": "string",
+        "name": "string",
+        "basePoints": "number"
+      }
+    },
+    {
+      "collection": "activity_logs",
+      "read": "request.auth != null",
+      "write": "request.auth != null",
+      "schema": {
+        "userId": "string",
+        "taskId": "string",
+        "quantity": "number",
+        "qualityModifier": "number",
+        "totalPoints": "number",
+        "date": "string",
+        "evidence": "string",
+        "notes": "string",
+        "status": "string"
+      }
+    }
+  ]
+}
